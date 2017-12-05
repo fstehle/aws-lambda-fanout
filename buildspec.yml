@@ -4,6 +4,7 @@ phases:
     install:
        commands:
         - ls -al
+        - env
     build:
       commands:
     post_build:
