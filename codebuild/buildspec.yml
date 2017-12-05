@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+    install:
+       commands:
+        - java -version
+        - ls -al
+        - chmod 770 gradlew
+    build:
+      commands:
+        - "./gradlew shadowJar"
+    post_build:
+      commands:
+artifacts:
+  files:
+    - '**/*'
