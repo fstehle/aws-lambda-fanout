@@ -5,7 +5,7 @@ phases:
        commands:
         - ls -al
         - env
-        - export CONFIG_ZIP=${CODEBUILD_SOURCE_VERSION//.zip/-config.zip}
+        - "export CONFIG_ZIP=${CODEBUILD_SOURCE_VERSION//.zip/-config.zip}"
         - export CONFIG_ZIP=${CONFIG_ZIP//arn:aws:s3:::/s3://}
         - aws s3 cp $CONFIG_ZIP ./config.zip
         - unzip config.zip
