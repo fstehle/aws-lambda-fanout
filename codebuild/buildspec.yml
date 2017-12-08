@@ -3,8 +3,7 @@ version: 0.2
 phases:
     install:
        commands:
-        - ls -al
-        - env
+        - chmod 770 gradlew
         - ./FanOutConfigurator config.yaml
     build:
       commands:
