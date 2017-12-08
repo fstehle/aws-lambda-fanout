@@ -4,6 +4,7 @@ phases:
     install:
        commands:
         - ls -al
+        - yum-config-manager --enable epel
         - yum install -y zip unszip p7zip
         - chmod 770 FanOutConfigurator
         - chmod 770 fanout
