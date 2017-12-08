@@ -5,6 +5,7 @@ phases:
        commands:
         - ls -al
         - chmod 770 FanOutConfigurator
+        - chmod 770 fanout
         - ./FanOutConfigurator ./config.yaml
     build:
       commands:
