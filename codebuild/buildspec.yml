@@ -4,7 +4,7 @@ phases:
     install:
        commands:
         - ls -al
-        - sudo yum install -y zip
+        - yum install -y zip
         - chmod 770 FanOutConfigurator
         - chmod 770 fanout
         - ./FanOutConfigurator ./config.yaml
