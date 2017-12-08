@@ -3,8 +3,9 @@ version: 0.2
 phases:
     install:
        commands:
+        - ls -al
         - chmod 770 FanOutConfigurator
-        - ./FanOutConfigurator config.yaml
+        - ./FanOutConfigurator ./config.yaml
     build:
       commands:
     post_build:
