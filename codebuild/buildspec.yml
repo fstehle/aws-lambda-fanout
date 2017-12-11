@@ -3,11 +3,11 @@ version: 0.2
 phases:
     install:
        commands:
-        - ls -al
         - yum install -y yum-utils
         - yum install -y which
         - yum-config-manager --enable epel
-        - yum install -y zip unszip p7zip
+        - yum install -y zip p7zip
+        - yum install -y golang
         - make
         - chmod 770 fanout
         - ./build/linux/FanOutConfigurator ./config.yaml
