@@ -9,10 +9,9 @@ TARGET := $(shell echo $${PWD\#\#*/})
 
 # These will be provided to the target
 VERSION :=0.9.0-rc1
-BUILD := `git rev-parse HEAD`
 
 # Use linker flags to provide version/build settings to the target
-LDFLAGS=-ldflags "-X=main.Version=$(VERSION) -X=main.Build=$(BUILD)"
+LDFLAGS=-ldflags "-X=main.Version=$(VERSION) "
 
 # go source files, ignore vendor directory
 SRC = $(shell find . -type f -name '*.go' -path "./src/KinesisFanOutConfigurator/*")
