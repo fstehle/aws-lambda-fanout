@@ -4,7 +4,7 @@ SHELL := /bin/bash
 BUILD_DIR = build
 
 # The name of the executable (default is current directory name)
-TARGET := ./src/KinesisFanOutConfigurator/FanOutConfigurator
+TARGET := ./src/FanOutConfigurator/FanOutConfigurator
 .DEFAULT_GOAL: $(TARGET)
 
 # These will be provided to the target
@@ -14,7 +14,7 @@ VERSION :=0.9.0-rc1
 LDFLAGS=-ldflags "-X=main.Version=$(VERSION) "
 
 # go source files, ignore vendor directory
-SRC = $(shell find . -type f -name '*.go' -path "./src/KinesisFanOutConfigurator/*")
+SRC = $(shell find . -type f -name '*.go' -path "./src/FanOutConfigurator/*")
 
 .PHONY: all build clean install uninstall fmt simplify check run
 
@@ -27,7 +27,7 @@ compile: check goxcompile
 
 goxcompile: export CGO_ENABLED=0
 goxcompile: dependencies
-	gox -arch amd64 -os darwin -os linux -os windows -output "$(BUILD_DIR)/{{.OS}}/$(NAME)/${TARGET}" ./src/KinesisFanOutConfigurator
+	gox -arch amd64 -os darwin -os linux -os windows -output "$(BUILD_DIR)/{{.OS}}/$(NAME)/${TARGET}" ./src/FanOutConfigurator
 
 clean:
 	@rm -f $(TARGET)
@@ -68,4 +68,4 @@ dependencies:
 #go get github.com/aws/aws-sdk-go/aws/session
 #go get gopkg.in/yaml.v2
 #go get gopkg.in/fatih/set.v0
-#go build src/KinesisFanOutConfigurator/FanOutConfigurator.go
+#go build src/FanOutConfigurator/FanOutConfigurator.go

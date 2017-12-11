@@ -3,7 +3,7 @@ package EventSourceMapping
 import (
 	"gopkg.in/fatih/set.v0"
 	"github.com/aws/aws-sdk-go/service/lambda"
-	"KinesisFanOutConfigurator/ConfigurationFile"
+	"FanOutConfigurator/ConfigurationFile"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/aws"
 	"fmt"

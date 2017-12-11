@@ -3,9 +3,9 @@ package main
 
 
 import (
-	"KinesisFanOutConfigurator/ConfigurationFile"
-	"KinesisFanOutConfigurator/EventSourceMapping"
-	"KinesisFanOutConfigurator/FanOutConfiguration"
+	"FanOutConfigurator/ConfigurationFile"
+	"FanOutConfigurator/EventSourceMapping"
+	"FanOutConfigurator/FanOutConfiguration"
 	"os"
 )
 

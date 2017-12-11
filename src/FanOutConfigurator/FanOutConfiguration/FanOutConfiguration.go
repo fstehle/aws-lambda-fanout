@@ -1,7 +1,7 @@
 package FanOutConfiguration
 
 import (
-	"KinesisFanOutConfigurator/ConfigurationFile"
+	"FanOutConfigurator/ConfigurationFile"
 	"os/exec"
 	"os"
 	"fmt"
