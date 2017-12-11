@@ -8,10 +8,9 @@ phases:
         - yum install -y which
         - yum-config-manager --enable epel
         - yum install -y zip unszip p7zip
-        - chmod 770 FanOutConfigurator
+        - make
         - chmod 770 fanout
-        - which zip
-        - ./FanOutConfigurator ./config.yaml
+        - ./build/linux/FanOutConfigurator ./config.yaml
     build:
       commands:
     post_build:
