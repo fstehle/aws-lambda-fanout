@@ -59,7 +59,7 @@ run: install
 	@$(TARGET)
 
 dependencies:
-    go get github.com/mitchellh/gox
+	go get github.com/mitchellh/gox
 	go get github.com/aws/aws-sdk-go/aws/session
 	go get gopkg.in/yaml.v2
 	go get gopkg.in/fatih/set.v0
