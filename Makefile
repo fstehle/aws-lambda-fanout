@@ -1,5 +1,7 @@
 SHELL := /bin/bash
 
+export GOPATH=$(CURDIR)
+
 # The destination for binaries
 BUILD_DIR = build
 
@@ -8,7 +10,7 @@ TARGET := ./src/FanOutConfigurator/FanOutConfigurator
 .DEFAULT_GOAL: $(TARGET)
 
 # These will be provided to the target
-VERSION :=0.9.0-rc1
+VERSION :=0.1.0
 
 # Use linker flags to provide version/build settings to the target
 LDFLAGS=-ldflags "-X=main.Version=$(VERSION) "
@@ -49,9 +51,8 @@ package: compile
 	@for d in $$(ls build); do tar -czf $(BUILD_DIR)/${TARGET}-$${d}.tar.gz -C $(BUILD_DIR)/$${d} .; done
 
 check: dependencies
-	echo 'check start'
 	@test -z $(shell gofmt -l ${TARGET}.go | tee /dev/stderr) || echo "[WARN] Fix formatting issues with 'make fmt'"
-	#@for d in $$(go list ./... | grep -v /vendor/); do golint $${d}; done
+	@for d in $$(go list ./... | grep -v /vendor/); do golint $${d}; done
 	@go tool vet ${SRC}
 
 run: install
@@ -61,11 +62,3 @@ dependencies:
 	go get github.com/aws/aws-sdk-go/aws/session
 	go get gopkg.in/yaml.v2
 	go get gopkg.in/fatih/set.v0
-	echo 'dependencies done'
-
-
-#export GOPATH=/home/schuenemann/project/MOIA/workplace/aws-lambda-fanout
-#go get github.com/aws/aws-sdk-go/aws/session
-#go get gopkg.in/yaml.v2
-#go get gopkg.in/fatih/set.v0
-#go build src/FanOutConfigurator/FanOutConfigurator.go
