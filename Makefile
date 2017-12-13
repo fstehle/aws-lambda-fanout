@@ -51,7 +51,7 @@ package: compile
 	@for d in $$(ls build); do tar -czf $(BUILD_DIR)/${TARGET}-$${d}.tar.gz -C $(BUILD_DIR)/$${d} .; done
 
 check: dependencies
-	@test -z $(shell gofmt -l ${TARGET}.go | tee /dev/stderr) || echo "[WARN] Fix formatting issues with 'make fmt'"
+	#@test -z $(shell gofmt -l ${TARGET}.go | tee /dev/stderr) || echo "[WARN] Fix formatting issues with 'make fmt'"
 	@for d in $$(go list ./... | grep -v /vendor/); do golint $${d}; done
 	@go tool vet ${SRC}
 
@@ -59,6 +59,7 @@ run: install
 	@$(TARGET)
 
 dependencies:
+    go get github.com/mitchellh/gox
 	go get github.com/aws/aws-sdk-go/aws/session
 	go get gopkg.in/yaml.v2
 	go get gopkg.in/fatih/set.v0
