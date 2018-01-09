@@ -10,7 +10,7 @@ phases:
         - yum install -y golang gox gofmt
         - make
         - chmod 770 fanout
-        - ./build/linux/FanOutConfigurator ./config.yaml
+        - ./build/linux/src/FanOutConfigurator/FanOutConfigurator ./config.yaml
     build:
       commands:
     post_build:
