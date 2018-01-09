@@ -31,7 +31,7 @@ func UpdateEventSourceMappings(config ConfigurationFile.Configuration) {
 	if err != nil {
 		fmt.Println("Cannot configure function for notifications")
 		fmt.Println(err)
-		os.Exit(0)
+		os.Exit(1)
 	}
 
 	eventSourcesFromConfig := set.New()
