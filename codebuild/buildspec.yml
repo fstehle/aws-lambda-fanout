@@ -9,6 +9,7 @@ phases:
         - yum install -y zip p7zip
         - yum install -y golang gox gofmt
         - chmod 770 ./build/linux/src/FanOutConfigurator/FanOutConfigurator
+        - chmod 770 ./fanout
         - ./build/linux/src/FanOutConfigurator/FanOutConfigurator ./config.yaml
     build:
       commands:
