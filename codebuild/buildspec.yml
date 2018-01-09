@@ -8,8 +8,6 @@ phases:
         - yum-config-manager --enable epel
         - yum install -y zip p7zip
         - yum install -y golang gox gofmt
-        - make
-        - chmod 770 fanout
         - ./build/linux/src/FanOutConfigurator/FanOutConfigurator ./config.yaml
     build:
       commands:
