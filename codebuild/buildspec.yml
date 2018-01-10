@@ -11,7 +11,7 @@ phases:
         - chmod 770 ./build/linux/src/FanOutConfigurator/FanOutConfigurator
         - chmod 770 ./fanout
         - env
-        - ./build/linux/src/FanOutConfigurator/FanOutConfigurator ./config.yaml
+        - ./build/linux/src/FanOutConfigurator/FanOutConfigurator $FanOutConfigFile
     build:
       commands:
     post_build:
