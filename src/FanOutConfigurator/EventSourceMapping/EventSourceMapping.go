@@ -1,12 +1,12 @@
 package EventSourceMapping
 
 import (
-	"gopkg.in/fatih/set.v0"
-	"github.com/aws/aws-sdk-go/service/lambda"
 	"FanOutConfigurator/ConfigurationFile"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/aws"
 	"fmt"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/lambda"
+	"gopkg.in/fatih/set.v0"
 	"os"
 )
 
@@ -56,8 +56,8 @@ func addEventSourceMappingFor(eventSourceARN string, fanOutName string, lambdaCl
 	fmt.Printf("add mapping for %v to lambda\n", eventSourceARN)
 
 	createEventSourceMappingInput := &lambda.CreateEventSourceMappingInput{
-		FunctionName: &fanOutName,
-		EventSourceArn: &eventSourceARN,
+		FunctionName:     &fanOutName,
+		EventSourceArn:   &eventSourceARN,
 		StartingPosition: aws.String("TRIM_HORIZON"),
 	}
 
