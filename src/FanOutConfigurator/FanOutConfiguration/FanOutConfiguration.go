@@ -33,7 +33,9 @@ func createRegisterCommand(FanOutName string, Mapping ConfigurationFile.Configur
 	args = append(args, "--source-type "+Mapping.SourceType)
 	args = append(args, "--source-arn "+Mapping.SourceARN)
 	args = append(args, "--destination "+Mapping.DestinationARN)
-	args = append(args, "--destination-region "+Mapping.DestinationRegion)
+	if Mapping.DestinationRegion != "" {
+		args = append(args, "--destination-region "+Mapping.DestinationRegion)
+	}
 	args = append(args, "--destination-role-arn "+Mapping.DestinationRoleARN)
 	if Mapping.Active {
 		args = append(args, "--active true")
