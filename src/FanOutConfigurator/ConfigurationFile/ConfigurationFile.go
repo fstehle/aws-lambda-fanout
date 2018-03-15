@@ -16,6 +16,7 @@ type ConfigurationEntry struct {
 	SourceType         string `yaml:"SourceType"`
 	SourceARN          string `yaml:"SourceARN"`
 	DestinationARN     string `yaml:"DestinationARN"`
+	DestinationRegion  string `yaml:"DestinationRegion"`
 	DestinationRoleARN string `yaml:"DestinationRoleARN"`
 	Active             bool   `yaml:"Active"`
 }
