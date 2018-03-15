@@ -1,26 +1,24 @@
 package EventSourceMapping
 
 import (
-	"gopkg.in/fatih/set.v0"
-	"github.com/aws/aws-sdk-go/service/lambda"
 	"FanOutConfigurator/ConfigurationFile"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/aws"
 	"fmt"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/lambda"
+	"gopkg.in/fatih/set.v0"
 	"os"
 )
 
 func UpdateEventSourceMappings(config ConfigurationFile.Configuration) {
 
-	sess, err := session.NewSession(&aws.Config{
-		Region: aws.String("eu-central-1")},
-	)
+	sess, err := session.NewSession()
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 
-	lambdaClient := lambda.New(sess, &aws.Config{Region: aws.String("eu-central-1")})
+	lambdaClient := lambda.New(sess)
 
 	getFunctionArgs := &lambda.ListEventSourceMappingsInput{
 		FunctionName: &config.FanOutName,
@@ -56,15 +54,15 @@ func addEventSourceMappingFor(eventSourceARN string, fanOutName string, lambdaCl
 	fmt.Printf("add mapping for %v to lambda\n", eventSourceARN)
 
 	createEventSourceMappingInput := &lambda.CreateEventSourceMappingInput{
-		FunctionName: &fanOutName,
-		EventSourceArn: &eventSourceARN,
+		FunctionName:     &fanOutName,
+		EventSourceArn:   &eventSourceARN,
 		StartingPosition: aws.String("TRIM_HORIZON"),
 	}
 
 	functionData, err := lambdaClient.CreateEventSourceMapping(createEventSourceMappingInput)
 
 	if err != nil {
-		fmt.Println("failed to add eventsourcemapping to fanout-lambda")
+		fmt.Printf("failed to add eventsourcemapping to fanout-lambda: %v\n", fanOutName)
 		panic(err)
 	}
 

@@ -1,7 +1,5 @@
 package main
 
-
-
 import (
 	"FanOutConfigurator/ConfigurationFile"
 	"FanOutConfigurator/EventSourceMapping"
@@ -15,9 +13,8 @@ func main() {
 	EventSourceMapping.UpdateEventSourceMappings(config)
 }
 
-
 func getConfigFilePath() string {
-	if (len(os.Args) != 2) {
+	if len(os.Args) != 2 {
 		panic("usage: updateFanoutConfig pathToConfigFile")
 	}
 	path := os.Args[1]

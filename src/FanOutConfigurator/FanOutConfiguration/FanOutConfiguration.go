@@ -2,9 +2,9 @@ package FanOutConfiguration
 
 import (
 	"FanOutConfigurator/ConfigurationFile"
-	"os/exec"
-	"os"
 	"fmt"
+	"os"
+	"os/exec"
 	"strings"
 )
 
@@ -28,18 +28,20 @@ func createRegisterCommand(FanOutName string, Mapping ConfigurationFile.Configur
 	var args []string
 	args = append(args, "register")
 	args = append(args, "kinesis")
-	args = append(args, "--function " + FanOutName)
-	args = append(args, "--id " + Mapping.ID)
-	args = append(args, "--source-type " + Mapping.SourceType)
-	args = append(args, "--source-arn " + Mapping.SourceARN)
-	args = append(args, "--destination " + Mapping.DestinationARN)
-	args = append(args, "--destination-role-arn " + Mapping.DestinationRoleARN)
-	if Mapping.Active {
-		args = append(args, "--active true" )
-	} else {
-		args = append(args, "--active false" )
+	args = append(args, "--function "+FanOutName)
+	args = append(args, "--id "+Mapping.ID)
+	args = append(args, "--source-type "+Mapping.SourceType)
+	args = append(args, "--source-arn "+Mapping.SourceARN)
+	args = append(args, "--destination "+Mapping.DestinationARN)
+	if Mapping.DestinationRegion != "" {
+		args = append(args, "--destination-region "+Mapping.DestinationRegion)
 	}
-	args = append(args, "--region eu-central-1") //TODO check for env var for region
+	args = append(args, "--destination-role-arn "+Mapping.DestinationRoleARN)
+	if Mapping.Active {
+		args = append(args, "--active true")
+	} else {
+		args = append(args, "--active false")
+	}
 	//TODO make configurable:
 	cmd := exec.Command("./fanout", args...)
 	return cmd
@@ -48,12 +50,10 @@ func createRegisterCommand(FanOutName string, Mapping ConfigurationFile.Configur
 func createDeployCommand(FanOutName string) *exec.Cmd {
 	var args []string
 	args = append(args, "deploy")
-	args = append(args, "--function " + FanOutName)
-	args = append(args, "--region eu-central-1") //TODO check for env var for region
+	args = append(args, "--function "+FanOutName)
 	cmd := exec.Command("./fanout", args...)
 	return cmd
 }
-
 
 func executeCommand(cmd *exec.Cmd) {
 	fmt.Printf("Executing: %s\n", strings.Join(cmd.Args, " "))
