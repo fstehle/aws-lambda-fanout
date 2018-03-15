@@ -12,15 +12,13 @@ import (
 
 func UpdateEventSourceMappings(config ConfigurationFile.Configuration) {
 
-	sess, err := session.NewSession(&aws.Config{
-		Region: aws.String("eu-central-1")},
-	)
+	sess, err := session.NewSession()
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 
-	lambdaClient := lambda.New(sess, &aws.Config{Region: aws.String("eu-central-1")})
+	lambdaClient := lambda.New(sess)
 
 	getFunctionArgs := &lambda.ListEventSourceMappingsInput{
 		FunctionName: &config.FanOutName,
