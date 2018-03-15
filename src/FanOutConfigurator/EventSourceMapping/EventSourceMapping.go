@@ -64,7 +64,7 @@ func addEventSourceMappingFor(eventSourceARN string, fanOutName string, lambdaCl
 	functionData, err := lambdaClient.CreateEventSourceMapping(createEventSourceMappingInput)
 
 	if err != nil {
-		fmt.Println("failed to add eventsourcemapping to fanout-lambda")
+		fmt.Printf("failed to add eventsourcemapping to fanout-lambda: %v\n", fanOutName)
 		panic(err)
 	}
 
