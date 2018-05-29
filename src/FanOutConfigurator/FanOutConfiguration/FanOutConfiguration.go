@@ -9,12 +9,12 @@ import (
 )
 
 func UpdateFrom(Configuration ConfigurationFile.Configuration) {
-	deployFanOut(Configuration.FanOutName)
+	deployFanOut(Configuration.FanOutName, Configuration.Runtime)
 	updateMappings(Configuration)
 }
 
-func deployFanOut(FanOutName string) {
-	executeCommand(createDeployCommand(FanOutName))
+func deployFanOut(FanOutName string, Runtime string) {
+	executeCommand(createDeployCommand(FanOutName, Runtime))
 }
 
 func updateMappings(Configuration ConfigurationFile.Configuration) {
@@ -47,10 +47,11 @@ func createRegisterCommand(FanOutName string, Mapping ConfigurationFile.Configur
 	return cmd
 }
 
-func createDeployCommand(FanOutName string) *exec.Cmd {
+func createDeployCommand(FanOutName string, Runtime string) *exec.Cmd {
 	var args []string
 	args = append(args, "deploy")
 	args = append(args, "--function "+FanOutName)
+  args = append(args, "--runtime "+Runtime)
 	cmd := exec.Command("./fanout", args...)
 	return cmd
 }
