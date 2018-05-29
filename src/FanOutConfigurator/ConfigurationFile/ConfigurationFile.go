@@ -8,6 +8,7 @@ import (
 
 type Configuration struct {
 	FanOutName string               `yaml:"FanOutName"`
+	Runtime    string               `yaml:"Runtime"`
 	Mappings   []ConfigurationEntry `yaml:"Mappings"`
 }
 
@@ -34,6 +35,10 @@ func ReadConfig(FileName string) Configuration {
 	if error != nil {
 		fmt.Println(error)
 		panic(error)
+	}
+
+	if config.Runtime == "" {
+	  config.Runtime = "nodejs4.3"
 	}
 
 	return config
